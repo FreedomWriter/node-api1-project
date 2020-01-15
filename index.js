@@ -1,7 +1,9 @@
 const express = require("express");
 const db = require("./data/db");
+const cors = require("cors");
 
 const server = express();
+server.use(cors());
 
 server.listen(4000, () => {
   console.log("*********** listening on port 4000");
