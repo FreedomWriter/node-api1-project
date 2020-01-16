@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 
 import {
   Form,
@@ -14,7 +15,12 @@ function UserForm() {
   const handleClick = () => {
     setFlipped(!flipped);
   };
-  console.log(flipped);
+
+  //   const history = useHistory();
+
+  const onButtonClick = () => {
+    console.log(`CLICKEKDKDKDKALGAJHGAKHG;AKHGKUALH`);
+  };
 
   return (
     <div classname={flipped === true ? "flipped" : ""}>
@@ -29,7 +35,7 @@ function UserForm() {
           <FormTitle>Tell Us A Story</FormTitle>
           <FormInput type="text" name="text" id="text" placeholder="Name" />
           <FormInput type="text" name="text" id="text" placeholder="Bio" />
-          <StyledButton>button</StyledButton>
+          <StyledButton onClick={onButtonClick}>button</StyledButton>
         </FormBack>
       </Form>
       {/* </GridColumn>
