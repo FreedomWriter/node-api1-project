@@ -25,12 +25,13 @@ server.get("/api/users", (req, res) => {
 
 server.post("/api/users", (req, res) => {
   const usersInfo = req.body;
-  console.log(usersInfo);
 
   if (usersInfo.name && usersInfo.bio) {
     db.insert(usersInfo)
-      .then(user => {
-        res.status(201).json({ success: true, user });
+      .then(userID => {
+        db.findById(userID.id).then(user =>
+          res.status(201).json({ success: true, user })
+        );
       })
       .catch(err => {
         res.status(500).json({ success: false, err });
@@ -67,11 +68,18 @@ server.get("/api/users/:id", (req, res) => {
 
 server.delete("/api/users/:id", (req, res) => {
   const { id } = req.params;
-
-  db.remove(id)
-    .then(deleted => {
-      if (deleted) {
-        res.status(204).end();
+  db.findById(id)
+    .then(user => {
+      if (typeof user === "object") {
+        db.remove(id)
+          .then(removeRes => {
+            removeRes
+              ? res.status(200).json(user)
+              : res.status(404).json({
+                  message: "The user with the specified ID is not exist"
+                });
+          })
+          .catch(err => console.log(err));
       } else {
         res
           .status(404)
