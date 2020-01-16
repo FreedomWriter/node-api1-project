@@ -13,7 +13,7 @@ import {
 } from "./UserForm.styles";
 
 function UserForm() {
-  const [flipped, setFlipped] = useState(true);
+  const [flipped, setFlipped] = useState(false);
   const handleClick = () => {
     setFlipped(!flipped);
   };
@@ -41,8 +41,6 @@ function UserForm() {
         name: "",
         bio: ""
       });
-
-      // return <Redirect to="/read"/>
     } else {
       return alert("Must provide a Name and Bio.");
     }
@@ -50,15 +48,17 @@ function UserForm() {
 
   return (
     <div classname={flipped === true ? "flipped" : ""}>
-      {/* <GridRow>
-        <GridColumn sm="3" lg="2"> */}
       <Form onSubmit={handleSubmit} className={flipped && "flipped"}>
         <FormFront>
-          <FormTitle>Add a Story</FormTitle>
+          <FormTitle onClick={() => setFlipped(!flipped)}>
+            Add a Story
+          </FormTitle>
         </FormFront>
 
         <FormBack>
-          <FormTitle>Tell Us A Story</FormTitle>
+          <FormTitle onClick={() => setFlipped(!flipped)}>
+            Tell Us A Story
+          </FormTitle>
           <FormInput
             type="text"
             name="name"
@@ -76,8 +76,6 @@ function UserForm() {
           <StyledButton onClick={handleSubmit}>button</StyledButton>
         </FormBack>
       </Form>
-      {/* </GridColumn>
-      </GridRow> */}
     </div>
   );
 }

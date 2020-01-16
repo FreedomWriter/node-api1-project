@@ -44,7 +44,7 @@ export const getFlex = value => {
 export const Form = styled.article`
   display: flex;
   justify-content: center;
-  margin: 40% auto;
+  margin: 20% auto;
   background-color: #e0e5ec;
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
@@ -52,7 +52,6 @@ export const Form = styled.article`
   width: 33%;
   text-align: center;
   min-height: 20rem;
-  cursor: pointer;
   perspective: 1000px;
   transition: all 1s ease-in-out;
 
@@ -108,14 +107,11 @@ export const FormBack = styled.div`
 `;
 
 // Form content
-export const FormNumber = styled.span`
-  display: block;
-  font-size: ${remy(24)};
-`;
 
 export const FormTitle = styled.h2`
   font-size: 1.6rem;
   padding: 5% 10%;
+  cursor: pointer;
 `;
 
 export const FormInput = styled.input`

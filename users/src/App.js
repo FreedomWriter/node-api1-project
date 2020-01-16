@@ -30,14 +30,8 @@ function App() {
   }, [userData]);
   return (
     <div className="App">
-      <Switch>
-        <Route path="/read">
-          <CardList users={users} setUsers={setUsers} />
-        </Route>
-        <Route path="/">
-          <UserForm setUserData={setUserData} userData={userData} />
-        </Route>
-      </Switch>
+      <UserForm setUserData={setUserData} userData={userData} />
+      <CardList users={users} setUsers={setUsers} />
     </div>
   );
 }
