@@ -13,40 +13,30 @@ import {
 } from "./Card.styles";
 import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
-function UserCard({ users }) {
-  const [toggle, setToggle] = useState(true);
-
-  const flipCard = e => {
-    e.preventDefault();
-    users.map(user => {
-      if (user.id === id) {
-        setToggle(!toggle);
-      }
-    });
-    setToggle(!toggle);
+function UserCard({ user, toggleFlipped }) {
+  console.log(user);
+  const handleClick = e => {
+    console.log("CLLLLIIICCKKKKEEDDD");
+    toggleFlipped(user.id);
   };
 
   return (
     <GridContainer>
       {/* <GridRow>
         <GridColumn sm="3" lg="2"> */}
-      {users.map(user => {
-        return (
-          <Card
-            onClick={flipCard}
-            className={toggle ? "flipped" : ""}
-            key={user.id}
-          >
-            <CardFront>
-              <CardTitle>{user.name}</CardTitle>
-            </CardFront>
+      <Card
+        onClick={handleClick}
+        className={user.flipped ? "flipped" : ""}
+        key={user.id}
+      >
+        <CardFront>
+          <CardTitle>{user.name}</CardTitle>
+        </CardFront>
 
-            <CardBack>
-              <CardDescription>{user.bio}</CardDescription>
-            </CardBack>
-          </Card>
-        );
-      })}
+        <CardBack>
+          <CardDescription>{user.bio}</CardDescription>
+        </CardBack>
+      </Card>
       {/* </GridColumn>
       </GridRow> */}
     </GridContainer>
