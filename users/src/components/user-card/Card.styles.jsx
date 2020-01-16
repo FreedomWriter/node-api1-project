@@ -1,44 +1,13 @@
 import styled, { css } from "styled-components";
 
-// export const CardContainer = styled.div`
-//   position: relative;
-//   z-index: 1;
-//   margin: 32px auto;
-//   max-width: 720px;
-//   height: 420px;
-//   perspective: 1000px;
-//   .card-body {
-//     width: 100%;
-//     height: 100%;
-//     transform-style: preserve-3d;
-//     transition: all 0.7s linear;
-
-//     :hover {
-//       transform: rotateY(180deg);
-//     }
-//   }
-// `;
+export const CardContainer = styled.div`
+  margin: 20% auto 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-auto-rows: true; */
+`;
 
 // export const CardBody = styled.div``;
-
-// Helper function to convert pixels to rems (remy)
-export const remy = px => `${px / 16}rem`;
-
-// Function for calculating value for width
-export const getWidth = value => {
-  if (!value) return;
-
-  let width = (value / 12) * 100;
-  return `width: ${width}%;`;
-};
-
-// Function for calculating value for flex
-export const getFlex = value => {
-  if (!value) return;
-
-  let flex = (value / 12) * 100;
-  return `flex: 0 0 ${flex}%;`;
-};
 
 // Flipping card
 export const Card = styled.article`
@@ -48,7 +17,7 @@ export const Card = styled.article`
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.7),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
   border-radius: 5%;
-  width: 33%;
+  width: 60%;
   text-align: center;
   min-height: 20rem;
   cursor: pointer;
@@ -100,14 +69,9 @@ export const CardFront = styled.div`
 // Card side - back
 export const CardBack = styled.div`
   ${CardSide};
-
+  display: flex;
+  text-align: center;
   transform: rotateY(-180deg);
-`;
-
-// Card content
-export const CardNumber = styled.span`
-  display: block;
-  font-size: ${remy(24)};
 `;
 
 export const CardTitle = styled.h2`
@@ -116,5 +80,21 @@ export const CardTitle = styled.h2`
 `;
 
 export const CardDescription = styled.span`
-  font-size: ${remy(16)};
+  font-size: 1.2rem;
+`;
+
+export const StyledButton = styled.button`
+  width: 150px;
+  margin: 15% auto -5%;
+  height: 30px;
+  border: none;
+  border-radius: 5%;
+  background-color: rgba(54, 69, 79, 0.808);
+  color: #e0e5ec;
+`;
+
+export const ListContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 `;

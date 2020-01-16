@@ -5,7 +5,8 @@ import {
   CardFront,
   CardTitle,
   CardBack,
-  CardDescription
+  CardDescription,
+  CardContainer
 } from "./Card.styles";
 import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
