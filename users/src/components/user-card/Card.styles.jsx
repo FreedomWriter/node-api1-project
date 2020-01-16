@@ -40,92 +40,28 @@ export const getFlex = value => {
   return `flex: 0 0 ${flex}%;`;
 };
 
-//Grid container
-export const GridContainer = styled.div`
-  padding-right: ${remy(15)};
-  padding-left: ${remy(15)};
-  margin-right: auto;
-  margin-left: auto;
-  width: 100%;
-
-  // Breakpoint for tablets
-  @media (min-width: 576px) {
-    max-width: ${remy(540)};
-  }
-
-  // Breakpoint for small desktops
-  @media (min-width: 768px) {
-    max-width: ${remy(720)};
-  }
-
-  // Breakpoint for medium desktops
-  @media (min-width: 992px) {
-    max-width: ${remy(9600)};
-  }
-
-  // Breakpoint for large desktops and HD devices
-  @media (min-width: 1200px) {
-    max-width: ${remy(1140)};
-  }
-`;
-
-export const GridRow = styled.div`
-  margin-right: ${remy(-15)};
-  margin-left: ${remy(-15)};
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-// Grid columns
-export const GridColumn = styled.div`
-  padding-right: ${remy(15)};
-  padding-left: ${remy(15)};
-
-  ${({ xs }) => (xs ? getFlex(xs) : "flex: 0 0 100%")};
-  ${({ xs }) => (xs ? getWidth(xs) : "width: 100%")};
-
-  // Columns for tablets
-  @media (min-width: 576px) {
-    ${({ sm }) => sm && getFlex(sm)};
-    ${({ sm }) => sm && getWidth(sm)};
-  }
-
-  // Columns for small desktops
-  @media (min-width: 768px) {
-    ${({ md }) => md && getFlex(md)};
-    ${({ md }) => md && getWidth(md)};
-  }
-
-  // Columns for medium desktops
-  @media (min-width: 992px) {
-    ${({ lg }) => lg && getFlex(lg)};
-    ${({ lg }) => lg && getWidth(lg)};
-  }
-
-  // Columns for large desktops and HD devices
-  @media (min-width: 1200px) {
-    ${({ xl }) => xl && getFlex(xl)};
-    ${({ xl }) => xl && getWidth(xl)};
-  }
-`;
-
 // Flipping card
 export const Card = styled.article`
-  position: relative;
-  width: 100%;
-  min-height: ${remy(380)};
+  display: flex;
+  margin: 5% auto;
+  background-color: #e0e5ec;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.7),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+  border-radius: 5%;
+  width: 33%;
+  text-align: center;
+  min-height: 20rem;
   cursor: pointer;
   perspective: 1000px;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.75s ease-in-out;
 
   &:focus,
   &:hover {
-    box-shadow: 0 0 ${remy(40)} rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 6rem rgb(163, 177, 198, 0.6);
   }
 
   &.flipped {
     & > div:first-of-type {
-      // frontside of the card
       transform: perspective(1000px) rotateY(-180deg);
     }
 
@@ -142,20 +78,21 @@ export const CardSide = css`
   top: 0;
   left: 0;
   overflow: hidden;
-  padding: ${remy(24)};
+  padding: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.75s ease-in-out;
 `;
 
 // Card side - front
 export const CardFront = styled.div`
   ${CardSide};
-
+  justify-content: flex-end;
+  align-items: flex-end;
   font-weight: bold;
   text-align: center;
 `;
@@ -174,7 +111,8 @@ export const CardNumber = styled.span`
 `;
 
 export const CardTitle = styled.h2`
-  font-size: ${remy(21)};
+  font-size: 1.6rem;
+  padding: 5% 10%;
 `;
 
 export const CardDescription = styled.span`

@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
-  GridContainer,
-  GridColumn,
-  GridRow,
   Card,
   CardFront,
-  CardNumber,
   CardTitle,
   CardBack,
   CardDescription
@@ -15,13 +11,12 @@ import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 function UserCard({ user, toggleFlipped }) {
   console.log(user);
-  const handleClick = e => {
-    console.log("CLLLLIIICCKKKKEEDDD");
+  const handleClick = () => {
     toggleFlipped(user.id);
   };
 
   return (
-    <GridContainer>
+    <div>
       {/* <GridRow>
         <GridColumn sm="3" lg="2"> */}
       <Card
@@ -39,7 +34,7 @@ function UserCard({ user, toggleFlipped }) {
       </Card>
       {/* </GridColumn>
       </GridRow> */}
-    </GridContainer>
+    </div>
   );
 }
 
