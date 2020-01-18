@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import UserForm from "./components/user-form/UserForm.component";
 import UserCard from "./components/user-card/Card.component";
@@ -28,10 +28,32 @@ function App() {
       .then(res => console.log(res))
       .catch(err => err);
   }, [userData]);
+
+  const addStory = formData => {
+    setUserData(formData);
+    if (formData.name !== "" && formData.bio !== "") {
+      axios
+        .post(`http://localhost:4000/api/users`, formData)
+        .then(res => setUsers([...users, formData]))
+        .catch(err => err);
+      setUserData({
+        name: "",
+        bio: ""
+      });
+      return <Redirect to="/read" />;
+    } else {
+      return alert("Must provide a Name and Bio.");
+    }
+  };
   return (
     <div className="App">
-      <UserForm setUserData={setUserData} userData={userData} />
       <CardList users={users} setUsers={setUsers} />
+      <UserForm
+        setUserData={setUserData}
+        userData={userData}
+        setUsers={setUsers}
+        addStory={addStory}
+      />
     </div>
   );
 }

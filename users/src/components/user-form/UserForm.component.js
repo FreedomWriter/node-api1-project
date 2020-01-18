@@ -12,38 +12,48 @@ import {
   StyledButton
 } from "./UserForm.styles";
 
-function UserForm() {
+function UserForm({ setUserData, userData, addStory }) {
   const [flipped, setFlipped] = useState(false);
+  const [tempUserData, setTempUserData] = useState(false);
   const handleClick = () => {
     setFlipped(!flipped);
   };
 
-  const [userData, setUserData] = useState({
-    name: "",
-    bio: ""
-  });
+  // const [userData, setUserData] = useState({
+  //   name: "",
+  //   bio: ""
+  // });
 
   const handleChanges = e => {
-    setUserData({
-      ...userData,
+    setTempUserData({
+      ...tempUserData,
       [e.target.name]: e.target.value
     });
   };
-
-  const handleSubmit = () => {
+  console.log(addStory);
+  const handleSubmit = tempUserData => {
     console.log(`CLICKEKDKDKDKALGAJHGAKHG;AKHGKUALH`);
-    if (userData.name !== "" && userData.bio !== "") {
-      axios
-        .post(`http://localhost:4000/api/users`, userData)
-        .then(res => console.log(res))
-        .catch(err => err);
-      setUserData({
-        name: "",
-        bio: ""
-      });
-    } else {
-      return alert("Must provide a Name and Bio.");
-    }
+    setUserData(tempUserData);
+    addStory(tempUserData);
+    setUserData({
+      name: "",
+      bio: ""
+    });
+    setFlipped(!flipped);
+    return <Redirect to="/read" />;
+    // if (userData.name !== "" && userData.bio !== "") {
+    //   axios
+    //     .post(`http://localhost:4000/api/users`, userData)
+    //     .then(res => console.log(res))
+    //     .catch(err => err);
+    //   setUserData({
+    //     name: "",
+    //     bio: ""
+    //   });
+    //   setFlipped(!flipped);
+    // } else {
+    //   return alert("Must provide a Name and Bio.");
+    // }
   };
 
   return (
@@ -73,7 +83,9 @@ function UserForm() {
             placeholder="Bio"
             onChange={handleChanges}
           />
-          <StyledButton onClick={handleSubmit}>button</StyledButton>
+          <StyledButton onClick={() => handleSubmit(tempUserData)}>
+            button
+          </StyledButton>
         </FormBack>
       </Form>
     </div>
